@@ -19,3 +19,16 @@ export const createlist = async (context: RouterContext) => {
   );
   response.body = { msg: "List created", shoppingListId };
 };
+
+export const deleteList = async (context: RouterContext) => {
+  const { request, response } = context;
+  const list_id = context.params.id;
+
+  if (!list_id) {
+    response.status = 400;
+    response.body = { msg: "Not valid id" };
+    return;
+  }
+  const deleteId = await shoppingService.deleteShoppingList(list_id);
+  response.body = { msg: "List deleted", deleteId };
+};

@@ -12,5 +12,13 @@ class ShoppingServices {
   createShoppingList = async (list: shoppingSchema) => {
     return await this.shoppingRepository.insertOne(list);
   };
+
+  deleteShoppingList = async (id: any) => {
+    return await this.shoppingRepository.deleteOne({
+      _id: {
+        $oid: id,
+      },
+    });
+  };
 }
 export default ShoppingServices;

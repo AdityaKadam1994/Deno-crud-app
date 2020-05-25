@@ -10,8 +10,12 @@ class ShoppinglistRepository {
     return list;
   }
   async insertOne(list: shoppingSchema) {
-    const { _id } = await this.shoppingCollection.insertOne(list);
-    return _id;
+    const { $oid } = await this.shoppingCollection.insertOne(list);
+    return $oid;
+  }
+  async deleteOne(id: any) {
+    await this.shoppingCollection.deleteOne(id);
+    return id;
   }
 }
 export default ShoppinglistRepository;
