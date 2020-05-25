@@ -32,3 +32,19 @@ export const deleteList = async (context: RouterContext) => {
   const deleteId = await shoppingService.deleteShoppingList(list_id);
   response.body = { msg: "List deleted", deleteId };
 };
+
+export const updateList = async (context: RouterContext) => {
+  const { request, response } = context;
+  const list_id = context.params.id;
+  if (!list_id || !request.hasBody) {
+    response.status = 400;
+    response.body = { msg: "Something went wrong" };
+    return;
+  }
+  const { value:{title,quantity} } = await request.body();
+  const updatedList = await shoppingService.updateShoppingList(
+    list_id,
+    { title, quantity },
+  );
+  response.body = { msg: "Successfully Updated", updatedList };
+};

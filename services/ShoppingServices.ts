@@ -20,5 +20,9 @@ class ShoppingServices {
       },
     });
   };
+
+  updateShoppingList = async (id: any, list: shoppingSchema) => {
+    return await this.shoppingRepository.updateOne({ _id: { $oid: id } }, list);
+  };
 }
 export default ShoppingServices;
