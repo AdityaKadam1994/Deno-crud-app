@@ -1,7 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
 import store from "../src/store";
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 

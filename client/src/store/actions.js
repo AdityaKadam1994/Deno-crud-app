@@ -10,12 +10,16 @@ const deleteShoppingList = (payload) => ({
   payload: payload,
 });
 
+const addShoppingList = (payload) => ({
+  type: "ADDLIST",
+  payload: payload,
+});
+
 export const dispatchGetList = () => {
   return (dispatch) => {
     axios
       .get("/api/lists")
       .then((res) => {
-        console.log(res.data);
         dispatch(getShoppingList(res.data));
       })
       .catch((err) => {
@@ -29,9 +33,22 @@ export const dispatchRemList = (id) => {
     axios
       .delete(`/api/lists/${id}`)
       .then((res) => {
-        console.log(res);
         dispatch(deleteShoppingList(id));
       })
       .catch((err) => console.log(err));
+  };
+};
+
+export const dispatchAddList = (listData) => {
+  return (dispatch) => {
+    axios
+      .post("/api/lists", listData)
+      .then((res) => {
+        dispatch(addShoppingList(listData));
+        dispatch(dispatchGetList());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };

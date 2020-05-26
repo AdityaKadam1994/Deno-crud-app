@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 
@@ -9,11 +9,10 @@ const ShoppingList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(dispatchGetList());
-  }, []);
-  const handleClick = (id) => {
+  }, [dispatch]);
+  const handleDelete = (id) => {
     dispatch(dispatchRemList(id));
   };
-
   return (
     <div>
       <Container className="mt-4">
@@ -23,11 +22,11 @@ const ShoppingList = () => {
               ? shopData.map((item) => (
                   <div
                     className="d-flex shopping-list mb-2"
-                    key={item._id.$oid}
+                    key={item._id ? item._id.$oid : item._id}
                   >
                     <p>{item.title}</p>
-                    <p>{item.quantity}</p>
-                    <p onClick={() => handleClick(item._id.$oid)}>X</p>
+                    <p>x {item.quantity}</p>
+                    <p onClick={() => handleDelete(item._id.$oid)}>X</p>
                   </div>
                 ))
               : null}

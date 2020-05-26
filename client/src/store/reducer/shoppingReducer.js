@@ -6,8 +6,10 @@ const shoppingReducer = (state = [], action) => {
       const filterData = state.filter((item) => {
         return item._id.$oid != action.payload;
       });
-      console.log(filterData);
+
       return [...filterData];
+    case "ADDLIST":
+      return [...state, action.payload];
     default:
       return state;
   }

@@ -20,7 +20,7 @@ const Navigation = () => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="m-auto" navbar>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <NavLink href="/">Shopping List</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
