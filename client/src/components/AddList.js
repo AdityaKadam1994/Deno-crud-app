@@ -14,6 +14,8 @@ function AddList() {
       quantity,
     };
     dispatch(dispatchAddList(addData));
+    setTitle("");
+    setQuantity("");
   };
   return (
     <div>
